@@ -56,9 +56,11 @@ def findBlackDots(canvas):
         #enter coordinates into array
         blackPixelX.extend([i])
         blackPixelY.extend([j])
-  
+        
+  #print arrays to check
   print "X coordinates are "+str(blackPixelX)+" and Y coordinates are "+str(blackPixelY)+"."  
-     
+  
+  #get points   
   point1x=blackPixelX[0]
   point1y=blackPixelY[0]
   point2x=blackPixelX[1]
@@ -68,6 +70,7 @@ def findBlackDots(canvas):
   point4x=blackPixelX[3]
   point4y=blackPixelY[3]
   
+  #print points to check
   print "point1 is x="+str(point1x)+" y="+str(point1y)+"."
   print "point2 is x="+str(point2x)+" y="+str(point2y)+"."
   print "point3 is x="+str(point3x)+" y="+str(point3y)+"."
@@ -75,3 +78,23 @@ def findBlackDots(canvas):
   
   
 #connect with lines in a varietys ways.
+  drawLine(point1x,point1y,point2x,point2y,canvas)
+  drawLine(point2x,point2y,point3x,point3y,canvas)
+  drawLine(point3x,point3y,point4x,point4y,canvas)
+
+
+
+def drawLine(x1,y1,x2,y2,picture):
+  addLine(picture,x1,y1,x2,y2)
+  repaint(picture)
+ 
+    
+  
+
+    
+
+
+
+
+
+
