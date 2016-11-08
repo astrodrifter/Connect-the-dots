@@ -55,8 +55,23 @@ def findBlackDots(canvas):
       if r<10 and g<10 and b<10:
         #enter coordinates into array
         blackPixelX.extend([i])
-        blackPixelY.extend([j]) 
+        blackPixelY.extend([j])
+  
   print "X coordinates are "+str(blackPixelX)+" and Y coordinates are "+str(blackPixelY)+"."  
-      
+     
+  point1x=blackPixelX[0]
+  point1y=blackPixelY[0]
+  point2x=blackPixelX[1]
+  point2y=blackPixelY[1]
+  point3x=blackPixelX[2]
+  point3y=blackPixelY[2]
+  point4x=blackPixelX[3]
+  point4y=blackPixelY[3]
+  
+  print "point1 is x="+str(point1x)+" y="+str(point1y)+"."
+  print "point2 is x="+str(point2x)+" y="+str(point2y)+"."
+  print "point3 is x="+str(point3x)+" y="+str(point3y)+"."
+  print "point4 is x="+str(point4x)+" y="+str(point4y)+"."
+  
   
 #connect with lines in a varietys ways.
