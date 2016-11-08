@@ -1,0 +1,42 @@
+#create function with picture as a parameter.
+def showRoads():
+  #make test image
+  canvas=makeEmptyPicture(300,300)
+  i=0
+  j=0
+  for x in range(0,300):
+    for y in range(0,300):
+      pixl=getPixel(canvas,x,y)  
+      if i==200: #pixl==getPixel(canvas,40,40):
+        j=j+1
+        if j==100:
+          setRed(pixl,0)
+          setBlue(pixl,0)
+          setGreen(pixl,0)
+          j=0
+        i=0
+      i=i+1
+  repaint(canvas)
+
+  #find black dots
+  #create list
+  count=0
+  for x in range(0,300):
+    for y in range(0,300):
+      pix=getPixel(canvas,x,y)
+      r=getRed(pix)
+      g=getGreen(pix)
+      b=getBlue(pix)
+      if r<10 and g<10 and b<10:
+        count=count+1
+        print pix
+    
+    
+  #count=0
+ # for pixel in getPixels(canvas):
+   #   if getColor(pixel)==black:
+   #     count=count+1
+  print count
+        
+  #store each dot in a list
+#connect with lihnes in varies ways.
