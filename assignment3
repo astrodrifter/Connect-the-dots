@@ -76,7 +76,8 @@ def findBlackDots(canvas):
   print "point3 is x="+str(point3x)+" y="+str(point3y)+"."
   print "point4 is x="+str(point4x)+" y="+str(point4y)+"."
   
-  firstRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas)
+  firstRoad = firstRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas)
+  repaint(firstRoad)
   SecondRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas)
   
 #connect with lines in a varietys ways.
@@ -96,7 +97,9 @@ def drawLine(x1,y1,x2,y2,picture,road):
   if road==1:
     addLine(picture,x1,y1,x2,y2)
     addText(picture,40,40,"Road 1")
-    repaint(picture)
+    return picture
+    #repaint(picture)
+    
   if road==2:
     addLine(picture,x1,y1,x2,y2)
     addText(picture,40,40,"Road 2")

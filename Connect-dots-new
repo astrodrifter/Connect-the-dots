@@ -1,0 +1,249 @@
+#create function with picture as a parameter.
+def showRoads(picture):
+  #getDimensions
+  picture=makePicture(picture)
+  h=getHeight(picture)
+  w=getWidth(picture)
+  #findDots()
+  
+  #copy picture fours time
+  pic1=copyPic(picture,w,h)
+  pic2=copyPic(picture,w,h)
+  pic3=copyPic(picture,w,h)
+  pic4=copyPic(picture,w,h)
+  
+  #find black dots and draw lines 
+  drawLines(pic1,w,h,1)
+  drawLines(pic2,w,h,2)
+  drawLines(pic3,w,h,3)
+  drawLines(pic4,w,h,4)
+  
+def copyPic(picture,w,h):
+  newPic=makeEmptyPicture(w,h)
+  for y in range(0,h-1):
+    for x in range(0,w-1):
+      oldPixel=getPixel(picture,x,y)
+      colour=getColor(oldPixel)
+      newPixel=getPixel(newPic,x,y)
+      setColor(newPixel,colour)
+
+  return newPic
+  
+
+#function finds black dots on and canvas
+def drawLines(pict,w,h,num):
+  #get size of array by counting how many black dots
+  count=0
+  w=getWidth(pict)
+  h=getHeight(pict)
+  for x in range(0,getWidth(pict)):
+    for y in range(0,getHeight(pict)):
+      pix=getPixel(pict,x,y)
+      r=getRed(pix)
+      g=getGreen(pix)
+      b=getBlue(pix)
+      if r<10 and g<10 and b<10:
+        count=count+1
+  print "There are "+str(count)+" black dots in this image."  
+  
+  #enter black dot coordinates into array       
+  blackPixelX=[]
+  blackPixelY=[]
+  for i in range(0,w-1):
+    for j in range(0,h-1):
+      pix=getPixel(pict,i,j)
+      r=getRed(pix)
+      g=getGreen(pix)
+      b=getBlue(pix)
+      if r<10 and g<10 and b<10:
+        #enter coordinates into array
+        blackPixelX.extend([i])
+        blackPixelY.extend([j])
+        
+  #print arrays to check
+  print "X coordinates are "+str(blackPixelX)+" and Y coordinates are "+str(blackPixelY)+"."  
+  
+  #get points   
+  point1x=blackPixelX[0]
+  point1y=blackPixelY[0]
+  point2x=blackPixelX[1]
+  point2y=blackPixelY[1]
+  point3x=blackPixelX[2]
+  point3y=blackPixelY[2]
+  point4x=blackPixelX[3]
+  point4y=blackPixelY[3]
+  
+  #print points to check
+  print "point1 is x="+str(point1x)+" y="+str(point1y)+"."
+  print "point2 is x="+str(point2x)+" y="+str(point2y)+"."
+  print "point3 is x="+str(point3x)+" y="+str(point3y)+"."
+  print "point4 is x="+str(point4x)+" y="+str(point4y)+"."
+  
+  if num==1:
+    firstRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,pict)
+  elif num==2:
+    SecondRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,pict)
+  elif num==3:
+    thirdRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,pict)
+  elif num==4:
+    fourthRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,pict)
+  
+#connect with lines in a varietys ways.
+def firstRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas):
+  drawLine(point1x,point1y,point2x,point2y,canvas,1)
+  drawLine(point2x,point2y,point3x,point3y,canvas,1)
+  drawLine(point3x,point3y,point4x,point4y,canvas,1)
+  
+def SecondRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas):
+  drawLine(point1x,point1y,point4x,point4y,canvas,2)
+  drawLine(point4x,point4y,point2x,point2y,canvas,2)
+  drawLine(point2x,point2y,point3x,point3y,canvas,2)
+
+
+
+def drawLine(x1,y1,x2,y2,picture,road):
+  if road==1:
+    addLine(picture,x1,y1,x2,y2)
+    addText(picture,40,40,"Road 1")
+    repaint(picture)
+  if road==2:
+    addLine(picture,x1,y1,x2,y2)
+    addText(picture,40,40,"Road 2")
+    repaint(picture)
+  #firstRoad=makeEmptyPicture(300,300)
+  #for x in range(0,300):
+  #  for y in range(0,300):
+  #    oldPix=getPixel(picture,x,y)
+  #    newPix=getPixel(firstRoad,x,y)
+  #    setColor(newPix,getColor(oldPix))
+  #repaint(firstRoad)
+ 
+    
+  
+
+    
+
+
+
+
+
+
+
+  canvas=makeEmptyPicture(300,300)
+   
+  #put black dots on test image
+  addBlackDots(canvas)
+  
+  #find black dots
+  findBlackDots(canvas)
+  
+#function adds black dots to test canvas  
+def addBlackDots(canvas):
+  i=0
+  j=0
+  for x in range(0,300):
+    for y in range(0,300):
+      pixl=getPixel(canvas,x,y)  
+      if i==200: 
+        j=j+1
+        if j==100:
+          blck=makeColor(0,0,0)
+          setColor(pixl,blck)
+          j=0
+        i=0
+      i=i+1
+  repaint(canvas)
+
+#function finds black dots on and canvas
+def findBlackDots(canvas):
+  #create list
+  #store each dot in a list
+  
+  #get size of array
+  count=0
+  for x in range(0,300):
+    for y in range(0,300):
+      pix=getPixel(canvas,x,y)
+      r=getRed(pix)
+      g=getGreen(pix)
+      b=getBlue(pix)
+      if r<10 and g<10 and b<10:
+        count=count+1
+  print "There are "+str(count)+" black dots in this image."  
+  
+  #enter black dot coordinates into array       
+  blackPixelX=[]
+  blackPixelY=[]
+  for i in range(0,300):
+    for j in range(0,300):
+      pix=getPixel(canvas,i,j)
+      r=getRed(pix)
+      g=getGreen(pix)
+      b=getBlue(pix)
+      if r<10 and g<10 and b<10:
+        #enter coordinates into array
+        blackPixelX.extend([i])
+        blackPixelY.extend([j])
+        
+  #print arrays to check
+  print "X coordinates are "+str(blackPixelX)+" and Y coordinates are "+str(blackPixelY)+"."  
+  
+  #get points   
+  point1x=blackPixelX[0]
+  point1y=blackPixelY[0]
+  point2x=blackPixelX[1]
+  point2y=blackPixelY[1]
+  point3x=blackPixelX[2]
+  point3y=blackPixelY[2]
+  point4x=blackPixelX[3]
+  point4y=blackPixelY[3]
+  
+  #print points to check
+  print "point1 is x="+str(point1x)+" y="+str(point1y)+"."
+  print "point2 is x="+str(point2x)+" y="+str(point2y)+"."
+  print "point3 is x="+str(point3x)+" y="+str(point3y)+"."
+  print "point4 is x="+str(point4x)+" y="+str(point4y)+"."
+  
+  firstRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas)
+  SecondRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas)
+  
+#connect with lines in a varietys ways.
+def firstRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas):
+  drawLine(point1x,point1y,point2x,point2y,canvas,1)
+  drawLine(point2x,point2y,point3x,point3y,canvas,1)
+  drawLine(point3x,point3y,point4x,point4y,canvas,1)
+  
+def SecondRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas):
+  drawLine(point1x,point1y,point4x,point4y,canvas,2)
+  drawLine(point4x,point4y,point2x,point2y,canvas,2)
+  drawLine(point2x,point2y,point3x,point3y,canvas,2)
+
+
+
+def drawLine(x1,y1,x2,y2,picture,road):
+  if road==1:
+    addLine(picture,x1,y1,x2,y2)
+    addText(picture,40,40,"Road 1")
+    repaint(picture)
+  if road==2:
+    addLine(picture,x1,y1,x2,y2)
+    addText(picture,40,40,"Road 2")
+    repaint(picture)
+  #firstRoad=makeEmptyPicture(300,300)
+  #for x in range(0,300):
+  #  for y in range(0,300):
+  #    oldPix=getPixel(picture,x,y)
+  #    newPix=getPixel(firstRoad,x,y)
+  #    setColor(newPix,getColor(oldPix))
+  #repaint(firstRoad)
+ 
+    
+  
+
+    
+
+
+
+
+
+
