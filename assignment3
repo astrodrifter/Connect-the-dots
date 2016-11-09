@@ -76,17 +76,38 @@ def findBlackDots(canvas):
   print "point3 is x="+str(point3x)+" y="+str(point3y)+"."
   print "point4 is x="+str(point4x)+" y="+str(point4y)+"."
   
+  firstRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas)
+  SecondRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas)
   
 #connect with lines in a varietys ways.
-  drawLine(point1x,point1y,point2x,point2y,canvas)
-  drawLine(point2x,point2y,point3x,point3y,canvas)
-  drawLine(point3x,point3y,point4x,point4y,canvas)
+def firstRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas):
+  drawLine(point1x,point1y,point2x,point2y,canvas,1)
+  drawLine(point2x,point2y,point3x,point3y,canvas,1)
+  drawLine(point3x,point3y,point4x,point4y,canvas,1)
+  
+def SecondRoute(point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,canvas):
+  drawLine(point1x,point1y,point4x,point4y,canvas,2)
+  drawLine(point4x,point4y,point2x,point2y,canvas,2)
+  drawLine(point2x,point2y,point3x,point3y,canvas,2)
 
 
 
-def drawLine(x1,y1,x2,y2,picture):
-  addLine(picture,x1,y1,x2,y2)
-  repaint(picture)
+def drawLine(x1,y1,x2,y2,picture,road):
+  if road==1:
+    addLine(picture,x1,y1,x2,y2)
+    addText(picture,40,40,"Road 1")
+    repaint(picture)
+  if road==2:
+    addLine(picture,x1,y1,x2,y2)
+    addText(picture,40,40,"Road 2")
+    repaint(picture)
+  #firstRoad=makeEmptyPicture(300,300)
+  #for x in range(0,300):
+  #  for y in range(0,300):
+  #    oldPix=getPixel(picture,x,y)
+  #    newPix=getPixel(firstRoad,x,y)
+  #    setColor(newPix,getColor(oldPix))
+  #repaint(firstRoad)
  
     
   
